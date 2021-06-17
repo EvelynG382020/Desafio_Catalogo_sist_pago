@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_025222) do
+ActiveRecord::Schema.define(version: 2021_06_17_144918) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,11 +80,12 @@ ActiveRecord::Schema.define(version: 2021_06_17_025222) do
 
   create_table "payments", force: :cascade do |t|
     t.integer "order_id"
-    t.integer "payable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payable_type"
+    t.integer "payable_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
-    t.index ["payable_id"], name: "index_payments_on_payable_id"
+    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id"
   end
 
   create_table "paypals", force: :cascade do |t|
@@ -121,10 +122,11 @@ ActiveRecord::Schema.define(version: 2021_06_17_025222) do
   end
 
   create_table "transbanks", force: :cascade do |t|
-    t.integer "transbankable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["transbankable_id"], name: "index_transbanks_on_transbankable_id"
+    t.string "transbankable_type"
+    t.integer "transbankable_id"
+    t.index ["transbankable_type", "transbankable_id"], name: "index_transbanks_on_transbankable_type_and_transbankable_id"
   end
 
   create_table "webpays", force: :cascade do |t|
