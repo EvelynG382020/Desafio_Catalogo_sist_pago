@@ -9,10 +9,10 @@ local:
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: XXXXXXXX
-  secret_access_key: XXXXXXXX
+  access_key_id: <%= ENV["NOM_KEY"] %>
+  secret_access_key: <%= ENV["NOM_ACCESS"] %>
   region: us-east-1
-  bucket: XXXXXXXX
+  bucket: activestoragedemobuket2
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
@@ -28,7 +28,7 @@ amazon:
 #   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
 #   container: your_container_name
 
-#mirror:
-  # service: Mirror
-  # primary: local
-  # mirrors: [ amazon ]
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors: [ amazon ]
